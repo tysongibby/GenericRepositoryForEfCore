@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Data\Data.csproj" />
+    <ProjectReference Include="..\GenericCrudRepository\GenericCrudRepository.csproj" />
   </ItemGroup>
 
 </Project>

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using Data.Interfaces;
+using GenericCrudRepository.Interfaces;
 
-namespace Data
+namespace GenericCrudRepository
 {
     public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {

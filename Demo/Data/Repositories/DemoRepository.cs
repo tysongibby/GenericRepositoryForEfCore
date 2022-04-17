@@ -1,6 +1,6 @@
 ﻿using Demo.Data.Repositories.Interfaces;
 using Demo.Data.DataModels;
-using Data;
+using GenericCrudRepository;
 
 
 namespace Demo.Data.Repositories

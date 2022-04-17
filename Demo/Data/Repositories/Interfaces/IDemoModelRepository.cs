@@ -1,5 +1,5 @@
 ﻿using Demo.Data.DataModels;
-using Data.Interfaces;
+using GenericCrudRepository.Interfaces;
 using System.Threading.Tasks;
 
 namespace Demo.Data.Repositories.Interfaces

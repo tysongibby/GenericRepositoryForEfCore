@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Data.Interfaces
+namespace GenericCrudRepository.Interfaces
 {
     public interface IGenericRepository<TEntity> where TEntity : class
     {
