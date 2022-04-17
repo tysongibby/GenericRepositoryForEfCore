@@ -1,6 +1,6 @@
-using Data;
-using Data.Repositories;
-using Data.Repositories.Interfaces;
+using Demo.Data;
+using Demo.Data.Repositories;
+using Demo.Data.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;

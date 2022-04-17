@@ -1,7 +1,7 @@
-﻿using Data.Repositories.Interfaces;
+﻿using Demo.Data.Repositories.Interfaces;
 using System.Threading.Tasks;
 
-namespace Data.Repositories
+namespace Demo.Data.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {

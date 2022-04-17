@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Data.DataModels;
-using Data.EntityConfigurations;
+using Demo.Data.DataModels;
+using Demo.Data.EntityConfigurations;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Data
+namespace Demo.Data
 {
     public class ApplicationDbContext : DbContext
     {

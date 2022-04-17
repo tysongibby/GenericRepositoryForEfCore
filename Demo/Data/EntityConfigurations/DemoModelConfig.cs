@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Data.DataModels;
+using Demo.Data.DataModels;
 
-namespace Data.EntityConfigurations
+namespace Demo.Data.EntityConfigurations
 {
     class DemoModelConfig : IEntityTypeConfiguration<DemoModel>
     {

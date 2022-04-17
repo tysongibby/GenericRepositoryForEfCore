@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Data.DataModels
+namespace Demo.Data.DataModels
 {
     // Represents the sub-segments of the chosen segment of study
     // Child of Subject, Parent of Flashcard

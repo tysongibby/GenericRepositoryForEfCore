@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Data.Migrations
+namespace Demo.Migrations
 {
     public partial class initial : Migration
     {

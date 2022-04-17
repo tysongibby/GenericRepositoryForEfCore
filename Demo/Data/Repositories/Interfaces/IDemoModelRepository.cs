@@ -1,7 +1,8 @@
-﻿using Data.DataModels;
+﻿using Demo.Data.DataModels;
+using Data.Interfaces;
 using System.Threading.Tasks;
 
-namespace Data.Repositories.Interfaces
+namespace Demo.Data.Repositories.Interfaces
 {
     public interface IDemoModelRepository : IGenericRepository<DemoModel>
     {

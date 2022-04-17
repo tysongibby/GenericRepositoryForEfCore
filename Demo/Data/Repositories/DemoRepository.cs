@@ -1,8 +1,9 @@
-﻿using Data.Repositories.Interfaces;
-using Data.DataModels;
+﻿using Demo.Data.Repositories.Interfaces;
+using Demo.Data.DataModels;
+using Data;
 
 
-namespace Data.Repositories
+namespace Demo.Data.Repositories
 {
     public class DemoRepository : GenericRepository<DemoModel>, IDemoModelRepository
     {
