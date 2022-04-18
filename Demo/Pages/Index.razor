@@ -3,23 +3,33 @@
 
 <PageTitle>Demo: Generic CRUD Repository</PageTitle>
 <h1>Demo: Generic CRUD Repository</h1>
+<p class="alert-danger">BUG: child component not rendering parent changes, please refresh page after saving a change.</p>
 <EditForm Model="Form" OnValidSubmit="ValidSubmit">
     <div class="row">
         <div class="col-4">
-            <ESelect class="form-control" SelectOptions="@selectOptions" @bind-Value="Form.SelectedDemoModelName" @ref="eSelect" ValidationFor="() => Form.SelectedDemoModelName"  FloatingLabel="false" Label="Choose Demo Model to edit:"/>
+            <ESelect class="form-control" SelectOptions="@selectOptions" @bind-Value="Form.SelectedDemoModelName" @ref="eSelect" 
+                ValidationFor="() => Form.SelectedDemoModelName"  FloatingLabel="false" Label="Choose Demo Model to edit:" 
+                OnChangeAction="@ProcessMessage" autofill="false"/>
         </div>
     </div>
     <div class="row">
         <div class="col-4">
             <div class="from-control-wrapper mt-2">
                 <label class="form-control-label" for="demoModelEdit">Demo Model to edit:</label>
-                <InputText id="demoModelEdit" class="form-control" @bind-Value="Form.SelectedDemoModelName" />
+                <InputText id="demoModelEdit" class="form-control" @bind-Value="Form.SelectedDemoModelName" 
+                    disabled="@demoModelEditDisabled" autofill="false" />
             </div>
         </div>
     </div>
     <div class="row mt-4">
         <div class="col-4">
             <button class="btn btn-primary" type="submit">Save</button>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-4">
+            <p>@updateMessage</p>
         </div>
     </div>
 

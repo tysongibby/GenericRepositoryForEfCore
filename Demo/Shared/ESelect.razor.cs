@@ -38,22 +38,19 @@ namespace Demo.Shared
                 SelectedOption = SelectOptions.Find(option => option.Value == value);
                 OnChangeAction?.Invoke();
             }
-        }      
+        }
 
-        protected override bool TryParseValueFromString(string? value, out string result, out string validationErrorMessage)
+        //protected override void OnInitialized()
+        //{
+        //    SelectedOption = SelectOptions[0];
+        //}
+
+        protected override bool TryParseValueFromString(string value, out string result, out string validationErrorMessage)
         {            
             result = value; 
             validationErrorMessage = null;
             return true;
         }
-
-        //public void OnClick(SelectOption option)
-        //{
-        //    SelectedOption = option;            
-        //    Trigger?.Invoke();
-        //}
-
-       
 
     }
 }
