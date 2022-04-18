@@ -1,6 +1,6 @@
 ﻿using Demo.Data.Repositories.Interfaces;
 using Demo.Data.DataModels;
-using GenericCrudRepository;
+using SqliteGenericCrudRepository;
 
 
 namespace Demo.Data.Repositories

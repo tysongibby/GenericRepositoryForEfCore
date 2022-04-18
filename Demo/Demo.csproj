@@ -12,11 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GenericCrudRepository\GenericCrudRepository.csproj" />
+    <Folder Include="Shared\CompnentModels\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Shared\CompnentModels\" />
+    <ProjectReference Include="..\SqliteGenericCrudRepository\SqliteGenericCrudRepository.csproj" />
   </ItemGroup>
 
 </Project>
