@@ -1,0 +1,41 @@
+﻿@using Demo.Shared.ComponentModels
+@inherits InputBase<string>
+
+@if(FloatingLabel == false)
+{
+    <div class="form-control-wrapper">
+        @if (!string.IsNullOrWhiteSpace(Label))
+        {
+            <label class="form-control-label" for="@Id">@Label</label>        
+        }
+        <select class="@CssClass" id="@Id" @bind="@CurrentValue" >
+            <option disabled></option>
+            @foreach(SelectOption option in SelectOptions)
+            {
+                <option id=@option.Id>@option.Value</option>
+            }
+        </select>
+        <div class="form-control-validation">
+            <ValidationMessage For="@ValidationFor" />
+        </div>
+    </div>
+}
+else
+{
+    <div class="form-floating">
+        <select class="form-control form-select @CssClass" id="@Id" @bind="@CurrentValue" >
+            <option disabled selected></option>
+            @foreach(SelectOption option in SelectOptions)
+            {
+                <option id=@option.Id>@option.Value</option>
+            }
+        </select>
+        @if (!string.IsNullOrWhiteSpace(Label))
+        {
+            <label class="form-control-label" for="@Id">@Label</label>        
+        }
+        <div class="form-control-validation">
+            <ValidationMessage For="@ValidationFor" />
+        </div>
+    </div>
+}

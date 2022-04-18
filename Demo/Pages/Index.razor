@@ -1,9 +1,30 @@
 ﻿@page "/"
+@using Demo.Data.DataModels
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Demo: Generic CRUD Repository</PageTitle>
+<h1>Demo: Generic CRUD Repository</h1>
+<EditForm Model="Form" OnValidSubmit="ValidSubmit">
+    <div class="row">
+        <div class="col-4">
+            <ESelect class="form-control" SelectOptions="@selectOptions" @bind-Value="Form.SelectedDemoModelName" @ref="eSelect" ValidationFor="() => Form.SelectedDemoModelName"  FloatingLabel="false" Label="Choose Demo Model to edit:"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <div class="from-control-wrapper mt-2">
+                <label class="form-control-label" for="demoModelEdit">Demo Model to edit:</label>
+                <InputText id="demoModelEdit" class="form-control" @bind-Value="Form.SelectedDemoModelName" />
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-4">
+            <button class="btn btn-primary" type="submit">Save</button>
+        </div>
+    </div>
 
-<h1>Hello, world!</h1>
+  
+</EditForm>
 
-Welcome to your new app.
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+

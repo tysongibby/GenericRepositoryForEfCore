@@ -15,4 +15,8 @@
     <ProjectReference Include="..\GenericCrudRepository\GenericCrudRepository.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Shared\CompnentModels\" />
+  </ItemGroup>
+
 </Project>
