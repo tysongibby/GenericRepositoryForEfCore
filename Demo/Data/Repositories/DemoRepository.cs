@@ -8,7 +8,7 @@ namespace Demo.Data.Repositories
     public class DemoRepository : GenericRepository<DemoModel>, IDemoModelRepository
     {
         public DemoRepository(ApplicationDbContext context) : base(context) { }
-        public ApplicationDbContext FlasherContext
+        public ApplicationDbContext ApplicationContext
         {
             get
             {
