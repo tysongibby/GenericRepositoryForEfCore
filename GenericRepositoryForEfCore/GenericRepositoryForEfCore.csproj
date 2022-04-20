@@ -6,7 +6,28 @@
     <Copyright>Copyright by Tyson Gibby. For details, see license agreement at: https://github.com/tysongibby/GenericCrudRepository/blob/master/LICENSE.</Copyright>
     <Description>Generic CRUD repository class for SQLite datbase that can be inherited into any data model repository to instantly add basic functions such as create, read, update, delete, etc..
 Based on .NET 6 and EF Core
-This project is in BETA</Description>
+This project is in BETA
+
+Example implementation:
+
+using Demo.Data.Repositories.Interfaces;
+using Demo.Data.DataModels;
+using GenericRepositoryForEfCore;
+
+namespace Demo.Data.Repositories
+{
+    public class DemoRepository : GenericRepository&lt;DemoModel&gt;, IDemoModelRepository
+    {
+        public DemoRepository(ApplicationDbContext context) : base(context) { }
+        public ApplicationDbContext ApplicationContext
+        {
+            get
+            {
+                return _context as ApplicationDbContext;
+            }
+        }    
+    }
+}</Description>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Authors>Tyson Gibby</Authors>
     <Company>Otter King Studios</Company>

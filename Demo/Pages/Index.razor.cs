@@ -45,8 +45,7 @@ namespace Demo.Pages
             DemoModel updatedModel = new DemoModel { Id = eSelect.SelectedOption.Id, Name = Form.SelectedDemoModelName };            
             unitOfWork.DemoModels.Update(updatedModel, updatedModel.Id);
             demoModels[updatedModel.Id] = updatedModel;
-
-            StateHasChanged();
+            
         }
 
         private void ProcessMessage()
@@ -54,9 +53,9 @@ namespace Demo.Pages
             updateMessage = "Update has been processed.";
         }
 
-        private void ToggleDemoModelEditDisabled()
-        {
-            demoModelEditDisabled = !demoModelEditDisabled;
-        }
+        //private void ToggleDemoModelEditDisabled()
+        //{
+        //    demoModelEditDisabled = !demoModelEditDisabled;
+        //}
     }
 }

@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SqliteGenericCrudRepository\SqliteGenericCrudRepository.csproj" />
+    <ProjectReference Include="..\GenericRepositoryForEfCore\GenericRepositoryForEfCore.csproj" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.4" />
   </ItemGroup>
 
