@@ -1,5 +1,5 @@
 ﻿using Demo.Data.DataModels;
-using SqliteGenericCrudRepository.Interfaces;
+using GenericRepositoryForEfCore.Interfaces;
 using System.Threading.Tasks;
 
 namespace Demo.Data.Repositories.Interfaces

@@ -44,7 +44,7 @@ namespace Demo.Migrations
             migrationBuilder.InsertData(
                 table: "DemoModel",
                 columns: new[] { "Id", "Name" },
-                values: new object[] { 5, "DemoModel 6" });
+                values: new object[] { 5, "DemoModel 5" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

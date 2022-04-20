@@ -5,9 +5,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using SqliteGenericCrudRepository.Interfaces;
+using GenericRepositoryForEfCore.Interfaces;
 
-namespace SqliteGenericCrudRepository
+namespace GenericRepositoryForEfCore
 {
     public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {

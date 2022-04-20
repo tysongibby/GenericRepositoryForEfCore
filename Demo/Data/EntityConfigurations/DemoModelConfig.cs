@@ -15,12 +15,12 @@ namespace Demo.Data.EntityConfigurations
         {            
             builder.HasData(
                     new List<DemoModel>
-                    {
+                    {                        
                         new DemoModel{ Id = 1, Name = "DemoModel 1"},
                         new DemoModel{ Id = 2, Name = "DemoModel 2"},
                         new DemoModel{ Id = 3, Name = "DemoModel 3"},
                         new DemoModel{ Id = 4, Name = "DemoModel 4"},
-                        new DemoModel{ Id = 5, Name = "DemoModel 6"}
+                        new DemoModel{ Id = 5, Name = "DemoModel 5"}
                     }
                 );
 

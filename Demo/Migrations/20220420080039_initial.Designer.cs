@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Demo.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220418083939_initial")]
+    [Migration("20220420080039_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -56,7 +56,7 @@ namespace Demo.Migrations
                         new
                         {
                             Id = 5,
-                            Name = "DemoModel 6"
+                            Name = "DemoModel 5"
                         });
                 });
 #pragma warning restore 612, 618

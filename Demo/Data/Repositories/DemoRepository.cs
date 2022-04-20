@@ -1,6 +1,6 @@
 ﻿using Demo.Data.Repositories.Interfaces;
 using Demo.Data.DataModels;
-using SqliteGenericCrudRepository;
+using GenericRepositoryForEfCore;
 
 
 namespace Demo.Data.Repositories

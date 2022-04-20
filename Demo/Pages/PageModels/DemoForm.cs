@@ -6,5 +6,5 @@ namespace Demo.Pages.PageModels
     {
         [Required]
         public string SelectedDemoModelName { get; set; }
-}
+    }
 }

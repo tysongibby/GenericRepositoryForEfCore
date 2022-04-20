@@ -25,8 +25,8 @@ namespace Demo.Pages
         private List<DemoModel> demoModels = new List<DemoModel>();
         private List<SelectOption> selectOptions = new List<SelectOption>();
         private ESelect eSelect;
-        private bool demoModelEditDisabled = false;
-        private string updateMessage = string.Empty;
+        private bool editorDisabled = false;      
+        private string message = string.Empty;
 
 
         protected override void OnInitialized()
@@ -44,19 +44,16 @@ namespace Demo.Pages
         {            
             DemoModel updatedModel = new DemoModel { Id = eSelect.SelectedOption.Id, Name = Form.SelectedDemoModelName };            
             unitOfWork.DemoModels.Update(updatedModel, updatedModel.Id);
-            demoModels[updatedModel.Id] = updatedModel;
+            demoModels[updatedModel.Id - 1] = updatedModel;
+            message = "Model update has been processed.";
 
-            StateHasChanged();
         }
 
-        private void ProcessMessage()
+        private void UpdateMessage()
         {
-            updateMessage = "Update has been processed.";
+            message = "Model has been selected, you may now edit.";
         }
 
-        private void ToggleDemoModelEditDisabled()
-        {
-            demoModelEditDisabled = !demoModelEditDisabled;
-        }
+
     }
 }

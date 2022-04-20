@@ -54,7 +54,7 @@ namespace Demo.Migrations
                         new
                         {
                             Id = 5,
-                            Name = "DemoModel 6"
+                            Name = "DemoModel 5"
                         });
                 });
 #pragma warning restore 612, 618
