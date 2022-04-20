@@ -8,6 +8,7 @@ Based on .NET 6 and EF Core. *This project is in BETA*
 
 Example implementation:
 
+```
 using Demo.Data.Repositories.Interfaces;
 using Demo.Data.DataModels;
 using GenericRepositoryForEfCore;
@@ -27,7 +28,8 @@ namespace Demo.Data.Repositories
          // add additional functionality here you stubbed in and inherited from your interface
     }
 }
-
+```
+```
 using Demo.Data.DataModels;
 using GenericRepositoryForEfCore.Interfaces;
 using System.Threading.Tasks;
@@ -39,3 +41,4 @@ namespace Demo.Data.Repositories.Interfaces
        // stub additional functionality here to be inherited by your repository
     }
 }
+```
