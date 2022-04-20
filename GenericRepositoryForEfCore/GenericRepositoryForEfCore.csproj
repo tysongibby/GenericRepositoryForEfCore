@@ -4,8 +4,12 @@
     <TargetFramework>net6.0</TargetFramework>
     <PackageProjectUrl>https://github.com/tysongibby/GenericCrudRepository</PackageProjectUrl>
     <Copyright>Copyright by Tyson Gibby. For details, see license agreement at: https://github.com/tysongibby/GenericCrudRepository/blob/master/LICENSE.</Copyright>
-    <Description>Generic CRUD repository class for SQLite datbase that can be inherited into any data model repository to instantly add basic functions such as create, read, update, delete, etc..
+    <Description>Generic CRUD repository class for EF Core using an database.  "GenericRepository" Can be inherited by any data model repository to instantly add basic functions such as create, read, update, delete, etc..
+
+Inherit your own data model inteface after inherting "GenericRepository" to add your own customizations and dependency injection (make sure you interface inherits from "IGenericInteface".  See examples below.
+
 Based on .NET 6 and EF Core
+
 This project is in BETA
 
 Example implementation:
@@ -26,6 +30,19 @@ namespace Demo.Data.Repositories
                 return _context as ApplicationDbContext;
             }
         }    
+         // add additional functionality here you stubbed in and inherited from your interface
+    }
+}
+
+using Demo.Data.DataModels;
+using GenericRepositoryForEfCore.Interfaces;
+using System.Threading.Tasks;
+
+namespace Demo.Data.Repositories.Interfaces
+{
+    public interface IDemoModelRepository : IGenericRepository&lt;DemoModel&gt;
+    {
+       // stub additional functionality here to be inherited by your repository
     }
 }</Description>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
