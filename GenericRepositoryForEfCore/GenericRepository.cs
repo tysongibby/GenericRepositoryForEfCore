@@ -55,7 +55,7 @@ namespace GenericRepositoryForEfCore
         /// Finds all entities of TEnitity type.
         /// </summary>
         /// <returns>A List<TEntity> of the entities found of TEntity type</returns>  //TODO: determine if this returns List<> or IEnumerable<>
-        public virtual IList<TEntity> GetAll()
+        public virtual IEnumerable<TEntity> GetAll()
         {
             try
             {
@@ -70,7 +70,7 @@ namespace GenericRepositoryForEfCore
         /// Asynchronously finds all entities of TEnitity type.
         /// </summary>
         /// <returns>A List<TEntity> of the entities found of TEntity type</returns>  //TODO: determine if this returns List<> or IEnumerable<>
-        public virtual async Task<IList<TEntity>> GetAllAsync()
+        public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             try
             {                
@@ -246,7 +246,7 @@ namespace GenericRepositoryForEfCore
         /// </summary>
         /// <param name="entity"></param>
         /// <returns>A List<int> that are the primary keys of the added entities.</int></returns>
-        public virtual IList<int> AddRange(IEnumerable<TEntity> entities)
+        public virtual IEnumerable<int> AddRange(IEnumerable<TEntity> entities)
         {
             try
             {
@@ -274,7 +274,7 @@ namespace GenericRepositoryForEfCore
         /// </summary>
         /// <param name="entity"></param>
         /// <returns>A List<int> that are the primary keys of the added entities.</int></returns>
-        public virtual async Task<IList<int>> AddRangeAsync(IEnumerable<TEntity> entities)
+        public virtual async Task<IEnumerable<int>> AddRangeAsync(IEnumerable<TEntity> entities)
         {            
             try
             {
