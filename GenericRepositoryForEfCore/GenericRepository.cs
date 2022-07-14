@@ -54,12 +54,12 @@ namespace GenericRepositoryForEfCore
         /// <summary>
         /// Finds all entities of TEnitity type.
         /// </summary>
-        /// <returns>A List<TEntity> of the entities found of TEntity type</returns>  //TODO: determine if this returns List<> or IEnumerable<>
+        /// <returns>An IEnumberable<TEntity> collection of the entities found of TEntity type</returns>
         public virtual IEnumerable<TEntity> GetAll()
         {
             try
             {
-                return _context.Set<TEntity>().ToList();
+                return _context.Set<TEntity>();
             }
             catch (Exception e)
             {
@@ -69,12 +69,12 @@ namespace GenericRepositoryForEfCore
         /// <summary>
         /// Asynchronously finds all entities of TEnitity type.
         /// </summary>
-        /// <returns>A List<TEntity> of the entities found of TEntity type</returns>  //TODO: determine if this returns List<> or IEnumerable<>
+        /// <returns>A Task<IEnumerable<TEntity>> collection of the entities found of TEntity type</returns>  
         public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             try
             {                
-                return await _context.Set<TEntity>().ToListAsync();
+                return await _context.Set<TEntity>().ToArrayAsync();
             }
             catch (Exception e)
             {
@@ -245,7 +245,7 @@ namespace GenericRepositoryForEfCore
         /// Adds multiple entities to the dbcontext.
         /// </summary>
         /// <param name="entity"></param>
-        /// <returns>A List<int> that are the primary keys of the added entities.</int></returns>
+        /// <returns>An IEnumerable<int> collection that are the primary keys of the added entities.</int></returns>
         public virtual IEnumerable<int> AddRange(IEnumerable<TEntity> entities)
         {
             try
@@ -273,7 +273,7 @@ namespace GenericRepositoryForEfCore
         /// Asynchronously adds multiple entities to the dbcontext.
         /// </summary>
         /// <param name="entity"></param>
-        /// <returns>A List<int> that are the primary keys of the added entities.</int></returns>
+        /// <returns>An IEnumerable<int> collection that are the primary keys of the added entities.</int></returns>
         public virtual async Task<IEnumerable<int>> AddRangeAsync(IEnumerable<TEntity> entities)
         {            
             try
