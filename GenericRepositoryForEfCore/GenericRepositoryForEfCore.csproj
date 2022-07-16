@@ -20,6 +20,7 @@ Example implentation:  https://github.com/tysongibby/GenericRepositoryForEfCore
     <RepositoryType>git</RepositoryType>
     <PackageTags>crud; efcore; net6; csharp; repository</PackageTags>
     <PackageReleaseNotes>BETA</PackageReleaseNotes>
+    <Version>1.0.0.2-beta</Version>
   </PropertyGroup>
 
   <ItemGroup>
