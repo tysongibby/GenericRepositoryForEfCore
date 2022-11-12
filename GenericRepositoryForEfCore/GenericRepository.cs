@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using GenericRepositoryForEfCore.Interfaces;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace GenericRepositoryForEfCore
 {
@@ -303,23 +304,25 @@ namespace GenericRepositoryForEfCore
         /// Updates the existing given entity.
         /// </summary>
         /// <param name="entity"></param>
-        /// <returns>The entity that has been updated.</returns>
-        public T Update<T>(T updatedEntity, int key) where T : class
+        /// <param name="entityId"></param>
+        /// <returns>The entity that has been updated or a null .</returns>
+        public T Update<T>(T entity, int entityId) where T : class
         {
-            if (updatedEntity == null)
+            if (entity == null)
             {
                 throw new ArgumentNullException($"{nameof(T)} entity must not be null");
             }
             try
             {
-                T existingEntity = _context.Set<T>().Find(key);
+                T existingEntity = _context.Set<T>().Find(entityId);
 
                 if (existingEntity != null)
                 {
-                    _context.Entry(existingEntity).CurrentValues.SetValues(updatedEntity);
+                    _context.Entry(existingEntity).CurrentValues.SetValues(entity);
                     _context.SaveChanges();
+                    return existingEntity;
                 }
-                return existingEntity;
+                else return null;
             }
             catch (Exception e)
             {
@@ -332,8 +335,9 @@ namespace GenericRepositoryForEfCore
         /// <summary>
         /// Deletes the given entity.
         /// </summary>
-        /// <param name="entity"></param>
-        public virtual void Remove(TEntity entity)
+        /// <param name="entity">entity to be removed</param>
+        /// <returns>The id of the entity that was removed</returns>
+        public virtual int Remove(TEntity entity, int entityId)
         {
             try
             {
@@ -343,6 +347,7 @@ namespace GenericRepositoryForEfCore
                 }
                 _context.Set<TEntity>().Remove(entity);
                 _context.SaveChanges();
+                return entityId;
             }
             catch (Exception e)
             {
@@ -352,19 +357,23 @@ namespace GenericRepositoryForEfCore
 
         //TODO: add an async counterpart for RemoveRange?
         /// <summary>
-        /// Deletes multilple given entities.
+        /// Deletes multilple given entities
         /// </summary>
-        /// <param name="entities"></param>
-        public virtual void RemoveRange(IEnumerable<TEntity> entities)
+        /// <param name="entities">Entities to be removed form database</param>
+        /// <returns>Number entities that were removed form datagbase</returns>
+        public virtual int RemoveRange(IEnumerable<TEntity> entities)
         {
+            int count = 0;           
             try
             {
                 if (entities == null)
                 {
                     throw new ArgumentNullException($"{nameof(TEntity)} entity must not be null");
                 }
+                count = entities.Count();
                 _context.Set<TEntity>().RemoveRange(entities);
                 _context.SaveChanges();
+                return count;
             }
             catch (Exception e)
             {

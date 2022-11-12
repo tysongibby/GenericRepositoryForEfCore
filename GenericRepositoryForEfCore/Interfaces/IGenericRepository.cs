@@ -27,8 +27,8 @@ namespace GenericRepositoryForEfCore.Interfaces
         Task<IEnumerable<int>> AddRangeAsync(IEnumerable<TEntity> entities);
 
         T Update<T>(T updatedEntity, int key) where T : class;
-        void Remove(TEntity entity);
-        void RemoveRange(IEnumerable<TEntity> entities);
+        int Remove(TEntity entity, int entityId);
+        int RemoveRange(IEnumerable<TEntity> entities);
 
         int GetPrimaryKey(TEntity entity);
     }

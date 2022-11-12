@@ -9,11 +9,11 @@ Based on .NET 6 and EF Core. *This project is in BETA*
 Example implementation:
 
 ```
-using Demo.Data.Repositories.Interfaces;
-using Demo.Data.DataModels;
+using Demo.UltiLuvData.Repositories.Interfaces;
+using Demo.UltiLuvData.DataModels;
 using GenericRepositoryForEfCore;
 
-namespace Demo.Data.Repositories
+namespace Demo.UltiLuvData.Repositories
 {
     public class DemoRepository : GenericRepository<DemoModel>, IDemoModelRepository
     {
@@ -30,11 +30,11 @@ namespace Demo.Data.Repositories
 }
 ```
 ```
-using Demo.Data.DataModels;
+using Demo.UltiLuvData.DataModels;
 using GenericRepositoryForEfCore.Interfaces;
 using System.Threading.Tasks;
 
-namespace Demo.Data.Repositories.Interfaces
+namespace Demo.UltiLuvData.Repositories.Interfaces
 {
     public interface IDemoModelRepository : IGenericRepository<DemoModel>
     {
