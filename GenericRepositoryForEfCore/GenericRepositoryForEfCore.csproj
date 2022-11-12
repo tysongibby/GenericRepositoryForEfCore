@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+    <!--<ImplicitUsings>enable</ImplicitUsings>-->
+    <!--<Nullable>enable</Nullable>-->
     <PackageProjectUrl>https://github.com/tysongibby/GenericRepositoryForEfCore</PackageProjectUrl>
     <Copyright>Copyright by Tyson Gibby. For details, see license agreement at: https://github.com/tysongibby/GenericCrudRepository/blob/master/LICENSE.</Copyright>
     <Description>Generic repository class for Entity Framework Core.  "GenericRepository" Can be inherited by any data model repository to instantly add basic functions such as create, read, update, delete, etc..
