@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "GenericRepositoryForEfCore": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:55323;http://localhost:55325"
+    }
+  }
+}
