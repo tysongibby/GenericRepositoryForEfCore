@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace Demo.Pages
 {
-    // TODO: add comments
+
     // BUG: demo not yet functional. child not updating after state has changed.
     public partial class Index
     {

@@ -7,24 +7,18 @@ namespace GenericRepositoryForEfCore.Interfaces
 {
     public interface IGenericRepository<TEntity> where TEntity : class
     {
-        TEntity Get(int id);
-        Task<TEntity> GetAsync(int id);        
+        TEntity Get(int id);            
         
-        IEnumerable<TEntity> GetAll();
-        Task<IEnumerable<TEntity>> GetAllAsync();        
+        IEnumerable<TEntity> GetAll();            
         
         IEnumerable<TEntity> Where(Expression<Func<TEntity, bool>> predicate);
-        TEntity WhereSingleOrDefault(Expression<Func<TEntity, bool>> predicate);
-        Task<TEntity> WhereSingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate);
+        TEntity WhereSingleOrDefault(Expression<Func<TEntity, bool>> predicate);       
 
-        bool Exists(int id);
-        Task<bool> ExistsAsync(int id);
+        bool Exists(int id);        
 
-        int Add(TEntity entity);
-        Task<int> AddAsync(TEntity entity);
+        int Add(TEntity entity);        
 
-        IEnumerable<int> AddRange(IEnumerable<TEntity> entities);
-        Task<IEnumerable<int>> AddRangeAsync(IEnumerable<TEntity> entities);
+        IEnumerable<int> AddRange(IEnumerable<TEntity> entities);       
 
         T Update<T>(T updatedEntity, int key) where T : class;
         int Remove(TEntity entity, int entityId);

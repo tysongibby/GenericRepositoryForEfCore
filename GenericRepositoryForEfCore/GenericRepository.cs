@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Internal;
 
 namespace GenericRepositoryForEfCore
 {
-    public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
+    public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity>, IGenericRepositoryAsync<TEntity> where TEntity : class
     {
         protected readonly DbContext _context;
 
@@ -87,8 +87,7 @@ namespace GenericRepositoryForEfCore
                 throw new Exception($"Could not find {nameof(TEntity)} entities: ", e);
             }
         }
-
-        //TODO: make this method async
+        
         /// <summary>
         /// Filters a sequence of values of TEntity type based on a predicate.
         /// </summary>
@@ -105,6 +104,32 @@ namespace GenericRepositoryForEfCore
             try
             {
                 return _context.Set<TEntity>().Where(predicate);
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Could not find results of {nameof(TEntity)} for query '{predicate}': ", e);
+            }
+        }
+
+        /// <summary>
+        /// Asynchronously filters a sequence of values of TEntity type based on a predicate.
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns>An IQueryable<TEntity> that contains elements of TEntity type from the input sequence that satisfy the condition specified by the predicate.</returns>   
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="Exception"></exception>
+        public virtual Task<IQueryable<TEntity>> WhereAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            if (predicate == null)
+            {
+                throw new ArgumentNullException($"{nameof(TEntity)} predicate must not be null");
+            }
+            try
+            {
+                return Task.Run(() =>
+                {
+                    return _context.Set<TEntity>().Where(predicate);
+                });
             }
             catch (Exception e)
             {
@@ -158,7 +183,7 @@ namespace GenericRepositoryForEfCore
         }
 
         /// <summary>
-        /// Determines if entity with the given primary key value exists.
+        /// Determines if entity with the given primary key value exists in the database.
         /// </summary>
         /// <param name="id"></param>
         /// <returns>A boolean; true if the entity exists or false if the entity does not exist. </returns>
@@ -183,7 +208,7 @@ namespace GenericRepositoryForEfCore
             }
         }
         /// <summary>
-        /// Asynchronously determines if entity with the given primary key value exists.
+        /// Asynchronously determines if entity with the given primary key value exists in the database.
         /// </summary>
         /// <param name="id"></param>
         /// <returns>A boolean; true if the entity exists or false if the entity does not exist. </returns>
@@ -209,7 +234,7 @@ namespace GenericRepositoryForEfCore
         }
 
         /// <summary>
-        /// Adds an entity to the dbcontext.
+        /// Adds an entity to the database.
         /// </summary>
         /// <param name="entity"></param>
         /// <returns>An integer that is the primary key of the added entity.</returns>
@@ -235,7 +260,7 @@ namespace GenericRepositoryForEfCore
             }
         }
         /// <summary>
-        /// Asynchronously adds an entity to the dbcontext.
+        /// Asynchronously adds an entity to the database.
         /// </summary>
         /// <param name="entity"></param>
         /// <returns>An integer that is the primary key of the added entity.</returns>
@@ -262,7 +287,7 @@ namespace GenericRepositoryForEfCore
         }
 
         /// <summary>
-        /// Adds multiple entities to the dbcontext.
+        /// Adds multiples of the given entity to the database.
         /// </summary>
         /// <param name="entity"></param>
         /// <returns>An IEnumerable<int> collection that are the primary keys of the added entities.</int></returns>
@@ -292,7 +317,7 @@ namespace GenericRepositoryForEfCore
             }
         }
         /// <summary>
-        /// Asynchronously adds multiple entities to the dbcontext.
+        /// Asynchronously adds multiples of the given entity to the database.
         /// </summary>
         /// <param name="entity"></param>
         /// <returns>An IEnumerable<int> collection that are the primary keys of the added entities.</int></returns>
@@ -322,9 +347,8 @@ namespace GenericRepositoryForEfCore
             }
         }
 
-        //TODO: add an async counterpart for Update?
         /// <summary>
-        /// Updates the existing given entity.
+        /// Updates the existing given entity in the database.
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="entityId"></param>
@@ -356,9 +380,44 @@ namespace GenericRepositoryForEfCore
  
         }
 
-        //TODO: add an async counterpart for Remove? 
         /// <summary>
-        /// Deletes the given entity.
+        /// Asynchronously updates the existing given entity in the database.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="entityId"></param>
+        /// <returns>The entity that has been updated or a null .</returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="Exception"></exception>
+        public Task<T> UpdateAsync<T>(T entity, int entityId) where T : class
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException($"{nameof(T)} entity must not be null");
+            }
+            try
+            {
+                return Task.Run(() =>
+                {
+                    T existingEntity = _context.Set<T>().Find(entityId);
+
+                    if (existingEntity != null)
+                    {
+                        _context.Entry(existingEntity).CurrentValues.SetValues(entity);
+                        _context.SaveChanges();
+                        return existingEntity;
+                    }
+                    else return null;
+                });
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"{nameof(T)} could not be updated: ", e);
+            }
+
+        }
+
+        /// <summary>
+        /// Deletes the given entity from the database.
         /// </summary>
         /// <param name="entity">entity to be removed</param>
         /// <returns>The id of the entity that was removed</returns>
@@ -382,12 +441,39 @@ namespace GenericRepositoryForEfCore
             }
         }
 
-        //TODO: add an async counterpart for RemoveRange?
         /// <summary>
-        /// Deletes multilple given entities
+        /// Asynchronously deletes the given entity from the database.
+        /// </summary>
+        /// <param name="entity">entity to be removed</param>
+        /// <returns>The id of the entity that was removed</returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="Exception"></exception>
+        public virtual Task<int> RemoveAsync(TEntity entity, int entityId)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException($"{nameof(TEntity)} entity must not be null");
+            }
+            try
+            {
+                return Task.Run(() =>
+                {
+                    _context.Set<TEntity>().Remove(entity);
+                    _context.SaveChanges();
+                    return entityId;
+                });
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"{nameof(TEntity)} could not be removed: ", e);
+            }
+        }
+
+        /// <summary>
+        /// Deletes multilple given entities from the database.
         /// </summary>
         /// <param name="entities">Entities to be removed form database</param>
-        /// <returns>Number entities that were removed form datagbase</returns>
+        /// <returns>Number entities that were removed form database</returns>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="Exception"></exception>
         public virtual int RemoveRange(IEnumerable<TEntity> entities)
@@ -404,6 +490,37 @@ namespace GenericRepositoryForEfCore
                 _context.Set<TEntity>().RemoveRange(entities);
                 _context.SaveChanges();
                 return count;
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"{nameof(IEnumerable<TEntity>)} could not be added: ", e);
+            }
+        }
+
+        /// <summary>
+        /// Asynchronously deletes multilple given entities from the database.
+        /// </summary>
+        /// <param name="entities">Entities to be removed form database</param>
+        /// <returns>Number entities that were removed form database</returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="Exception"></exception>
+        public virtual Task<int> RemoveRangeAsync(IEnumerable<TEntity> entities)
+        {
+            if (entities == null)
+            {
+                throw new ArgumentNullException($"{nameof(TEntity)} entity must not be null");
+            }
+
+            int count = 0;
+            try
+            {
+                return Task.Run(() =>
+                {
+                    count = entities.Count();
+                    _context.Set<TEntity>().RemoveRange(entities);
+                    _context.SaveChanges();
+                    return count;
+                });
             }
             catch (Exception e)
             {
@@ -459,8 +576,7 @@ namespace GenericRepositoryForEfCore
                 throw new Exception($"{nameof(TEntity)} could not be updated: ", e);
             }
         }
-
-        //TODO: add an async counterpart for GetPrimaryKey?       
+   
         /// <summary>
         /// Finds the primary key of the given entity
         /// </summary>
@@ -489,6 +605,36 @@ namespace GenericRepositoryForEfCore
         }
 
         /// <summary>
+        /// Asynchronously finds the primary key of the given entity
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entity"></param>
+        /// <returns>An integer that is the primary key for the given entity.</returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="Exception"></exception>
+        public virtual Task<int> GetPrimaryKeyAsync(TEntity entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException($"{nameof(TEntity)} entity must not be null");
+            }
+            try
+            {
+                return Task.Run(() => 
+                { 
+                    var keyName = _context.Model.FindEntityType(typeof(TEntity)).FindPrimaryKey().Properties
+                        .Select(x => x.Name).Single();
+
+                    return (int)entity.GetType().GetProperty(keyName).GetValue(entity, null);
+                });
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Primary key could not be found for {nameof(TEntity)}: ", e);
+            }
+        }
+
+        /// <summary>
         /// Returns next primary key in sequence for given entity
         /// </summary>
         /// <returns>An integer that is the next primary key in the sequence for the given entity</returns>
@@ -505,6 +651,33 @@ namespace GenericRepositoryForEfCore
             catch(Exception e)
             {
                 throw new Exception($"Next primary key for {nameof(TEntity)} could not be found: ", e);
+            }
+        }
+
+        /// <summary>
+        /// Asynchronously returns next primary key in sequence for given entity
+        /// </summary>
+        /// <returns>An integer that is the next primary key in the sequence for the given entity</returns>
+        /// <exception cref="Exception"></exception>
+        public virtual Task<int> NextKeyAsync(TEntity entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException($"{nameof(TEntity)} entity must not be null");
+            }
+            try
+            {
+                return Task.Run(() =>
+                {
+                    var keyName = _context.Model.FindEntityType(typeof(TEntity)).FindPrimaryKey().Properties
+                    .Select(x => x.Name).Single();
+
+                    return (int)entity.GetType().GetProperty(keyName).GetValue(entity, null);
+                });
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Primary key could not be found for {nameof(TEntity)}: ", e);
             }
         }
 
