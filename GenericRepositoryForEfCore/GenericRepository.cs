@@ -24,6 +24,7 @@ namespace GenericRepositoryForEfCore
         /// </summary>
         /// <param name="id"></param>
         /// <returns>The entity found or null.</returns>
+        /// <exception cref="Exception"></exception>
         public virtual TEntity Get(int id)
         {
             try
@@ -40,6 +41,7 @@ namespace GenericRepositoryForEfCore
         /// </summary>
         /// <param name="id"></param>
         /// <returns>The entity found or null.</returns>
+        /// <exception cref="Exception"></exception>
         public virtual async Task<TEntity> GetAsync(int id)
         {
             try
@@ -56,6 +58,7 @@ namespace GenericRepositoryForEfCore
         /// Finds all entities of TEnitity type.
         /// </summary>
         /// <returns>An IEnumberable<TEntity> collection of the entities found of TEntity type</returns>
+        /// <exception cref="Exception"></exception>
         public virtual IEnumerable<TEntity> GetAll()
         {
             try
@@ -67,10 +70,12 @@ namespace GenericRepositoryForEfCore
                 throw new Exception($"Could not find {nameof(TEntity)} entities: ", e);
             }
         }
+
         /// <summary>
         /// Asynchronously finds all entities of TEnitity type.
         /// </summary>
         /// <returns>A Task<IEnumerable<TEntity>> collection of the entities found of TEntity type</returns>  
+        /// <exception cref="Exception"></exception>
         public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             try
@@ -89,6 +94,8 @@ namespace GenericRepositoryForEfCore
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns>An IQueryable<TEntity> that contains elements of TEntity type from the input sequence that satisfy the condition specified by the predicate.</returns>   
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="Exception"></exception>
         public virtual IEnumerable<TEntity> Where(Expression<Func<TEntity, bool>> predicate)
         {
             if (predicate == null)
@@ -110,6 +117,8 @@ namespace GenericRepositoryForEfCore
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns>An entity of TEntity type from the input sequence that satisfy the condition specified by the predicate.</returns>   
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="Exception"></exception>
         public virtual TEntity WhereSingleOrDefault(Expression<Func<TEntity, bool>> predicate)
         {
             if (predicate == null)
@@ -130,6 +139,8 @@ namespace GenericRepositoryForEfCore
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns>An entity of TEntity type from the input sequence that satisfy the condition specified by the predicate.</returns>   
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="Exception"></exception>
         public virtual async Task<TEntity> WhereSingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate)
         {
             if (predicate == null)
@@ -151,6 +162,7 @@ namespace GenericRepositoryForEfCore
         /// </summary>
         /// <param name="id"></param>
         /// <returns>A boolean; true if the entity exists or false if the entity does not exist. </returns>
+        /// <exception cref="Exception"></exception>
         public virtual bool Exists(int id)
         {
             try
@@ -175,6 +187,7 @@ namespace GenericRepositoryForEfCore
         /// </summary>
         /// <param name="id"></param>
         /// <returns>A boolean; true if the entity exists or false if the entity does not exist. </returns>
+        /// <exception cref="Exception"></exception>
         public virtual async Task<bool> ExistsAsync(int id)
         {
             try
@@ -200,6 +213,8 @@ namespace GenericRepositoryForEfCore
         /// </summary>
         /// <param name="entity"></param>
         /// <returns>An integer that is the primary key of the added entity.</returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="Exception"></exception>
         public virtual int Add(TEntity entity)
         {
             if (entity == null)
@@ -224,6 +239,8 @@ namespace GenericRepositoryForEfCore
         /// </summary>
         /// <param name="entity"></param>
         /// <returns>An integer that is the primary key of the added entity.</returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="Exception"></exception>
         public virtual async Task<int> AddAsync(TEntity entity)
         {
             if (entity == null)
@@ -249,6 +266,8 @@ namespace GenericRepositoryForEfCore
         /// </summary>
         /// <param name="entity"></param>
         /// <returns>An IEnumerable<int> collection that are the primary keys of the added entities.</int></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="Exception"></exception>
         public virtual IEnumerable<int> AddRange(IEnumerable<TEntity> entities)
         {
             if (entities == null)
@@ -277,6 +296,8 @@ namespace GenericRepositoryForEfCore
         /// </summary>
         /// <param name="entity"></param>
         /// <returns>An IEnumerable<int> collection that are the primary keys of the added entities.</int></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="Exception"></exception>
         public virtual async Task<IEnumerable<int>> AddRangeAsync(IEnumerable<TEntity> entities)
         {
             if (entities == null)
@@ -308,6 +329,8 @@ namespace GenericRepositoryForEfCore
         /// <param name="entity"></param>
         /// <param name="entityId"></param>
         /// <returns>The entity that has been updated or a null .</returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="Exception"></exception>
         public T Update<T>(T entity, int entityId) where T : class
         {
             if (entity == null)
@@ -339,6 +362,8 @@ namespace GenericRepositoryForEfCore
         /// </summary>
         /// <param name="entity">entity to be removed</param>
         /// <returns>The id of the entity that was removed</returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="Exception"></exception>
         public virtual int Remove(TEntity entity, int entityId)
         {
             if (entity == null)
@@ -363,6 +388,8 @@ namespace GenericRepositoryForEfCore
         /// </summary>
         /// <param name="entities">Entities to be removed form database</param>
         /// <returns>Number entities that were removed form datagbase</returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="Exception"></exception>
         public virtual int RemoveRange(IEnumerable<TEntity> entities)
         {
             if (entities == null)
@@ -389,6 +416,8 @@ namespace GenericRepositoryForEfCore
         /// </summary>
         /// <param name="entity"></param>
         /// <returns>An integer representing the number of entites changed during the save</returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="Exception"></exception>
         public virtual int SaveChanges(TEntity entity)
         {
             if (entity == null)
@@ -411,6 +440,8 @@ namespace GenericRepositoryForEfCore
         /// </summary>
         /// <param name="entity"></param>
         /// <returns>An integer representing the number of entites changed during the save</returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="Exception"></exception>
         public virtual async Task<int> SaveChangesAsync(TEntity entity)
         {
             if (entity == null)
@@ -436,6 +467,8 @@ namespace GenericRepositoryForEfCore
         /// <typeparam name="T"></typeparam>
         /// <param name="entity"></param>
         /// <returns>An integer that is the primary key for the given entity.</returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="Exception"></exception>
         public virtual int GetPrimaryKey(TEntity entity)
         {
             if (entity == null)
@@ -455,6 +488,11 @@ namespace GenericRepositoryForEfCore
             }
         }
 
+        /// <summary>
+        /// Returns next primary key in sequence for given entity
+        /// </summary>
+        /// <returns>An integer that is the next primary key in the sequence for the given entity</returns>
+        /// <exception cref="Exception"></exception>
         public virtual int NextPrimaryKey()
         {
             try
