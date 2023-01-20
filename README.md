@@ -4,7 +4,7 @@ Generic repository class for Entity Framework Core.  "GenericRepository" Can be 
 
 Create your own interface and have it inherit from "IGenericRepsitory" to use dependency injection and add your own custom function. Then have your repositry inherit your interface after inherting "GenericRepository"  See examples below.
 
-Based on .NET 6 and EF Core. *This project is in BETA*
+Based on .NET 6 and EF Core. *This project is in BETA* - TESTING NOT COMPLETE ON ASYNCHRONOUS METHODS
 
 Example implementation:
 
