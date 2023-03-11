@@ -6,7 +6,9 @@ Create your own interface and have it inherit from "IGenericRepsitory" to use de
 
 Based on .NET 6 and EF Core. *This project is in BETA* - TESTING NOT COMPLETE ON ASYNCHRONOUS METHODS
 
-package install:
+[Nuget.org page](https://www.nuget.org/packages/GenericRepositoryForEfCore/1.0.0.5-beta)
+
+Nuget package install:
 ```
 dotnet add package GenericRepositoryForEfCore
 ```
