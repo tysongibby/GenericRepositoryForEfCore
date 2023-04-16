@@ -10,7 +10,7 @@
 
 Create your own interface and have it inherit from "IGenericRepsitory" to use dependency injection and add your own custom function. Then have your repositry inherit your interface after inherting "GenericRepository" .
 
-Based on .NET 6 and EF Core.  *This project is in BETA*
+Based on .NET 6 and EF Core.  *The Asynchronous Methods of this Repository are untested*
 
 Example implentation:  https://github.com/tysongibby/GenericRepositoryForEfCore
 </Description>
@@ -21,8 +21,8 @@ Example implentation:  https://github.com/tysongibby/GenericRepositoryForEfCore
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryType>git</RepositoryType>
     <PackageTags>crud; efcore; net6; csharp; repository</PackageTags>
-    <PackageReleaseNotes>BETA</PackageReleaseNotes>
-    <Version>1.0.0.5-beta</Version>
+    <PackageReleaseNotes>Updated to .NET 6.0.016</PackageReleaseNotes>
+    <Version>1.0.0.6</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Title>Generic Repository for Entity Framework Core </Title>
   </PropertyGroup>
@@ -35,9 +35,9 @@ Example implentation:  https://github.com/tysongibby/GenericRepositoryForEfCore
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.16" />
     <!--<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.4" />-->
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.12">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.16">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
