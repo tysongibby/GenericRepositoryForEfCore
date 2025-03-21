@@ -1,4 +1,4 @@
-# Generic Repository for Entity Framework Core - BETA
+# Generic Repository for Entity Framework Core
 
 Generic repository class for Entity Framework Core.  "GenericRepository" Can be inherited by any data model repository to instantly add basic functions such as create, read, update, delete, etc..
 
